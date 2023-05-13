@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_utils.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:24:09 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/05 18:32:23 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../assets/push_swap.h"
+#include "../includes/sorter.h"
 
 // **********************************************************************
 // cmd_to_stk() function retrieves all ints from the 2D array		   *
@@ -27,17 +15,17 @@ int	cmd_to_stk(int stack[], char **argv)
 	length = 0;
 	if (argv && !argv[0])
 		return (0);
-	while (*argv)
+	while ( *argv )
 	{
-		while (**argv)
+		while ( **argv )
 		{
-			while (number_zero(&argv[0], &stack[length]))
+			while ( number_zero(&argv[0], &stack[length]) )
 				length++;
-			if (ft_atoi(*argv))
+			if ( atoi(*argv) )
 				cmd_to_stk_2(stack, &length, &argv);
-			else if (check_for_char(*argv) && !ft_atoi(*argv))
+			else if ( check_for_char(*argv) && ! atoi(*argv) )
 				return (0);
-			else if (!ft_atoi(*argv))
+			else if ( ! atoi(*argv) )
 				break ;
 		}
 		argv++;
@@ -52,13 +40,13 @@ int	cmd_to_stk(int stack[], char **argv)
 // ****************************************************************
 void	cmd_to_stk_2(int *stack, int *length, char ***argv)
 {
-	stack[*length] = ft_atoi(**argv);
+	stack[*length] = atoi(**argv);
 	(*length)++;
-	while ((***argv >= 9 && ***argv <= 13) || (***argv == 32))
+	while ( (***argv >= 9 && ***argv <= 13) || (***argv == 32) )
 		(**argv)++;
-	if (***argv == 45 || ***argv == 43)
+	if ( ***argv == 45 || ***argv == 43 )
 		(**argv)++;
-	while ((***argv >= 48 && ***argv <= 57))
+	while ( (***argv >= 48 && ***argv <= 57) )
 		(**argv)++;
 }
 
@@ -75,11 +63,11 @@ int	sorted_arg(int *stack, int len)
 	int	i;
 
 	i = 0;
-	if (!stack)
+	if ( ! stack )
 		return (0);
-	while (i + 1 < len)
+	while ( i + 1 < len )
 	{
-		if (stack[i] > stack[i + 1])
+		if ( stack[i] > stack[i + 1] )
 			return (0);
 		i++;
 	}
@@ -99,11 +87,11 @@ int	chk_dup(int *stack, int len)
 	int	i;
 	int	x;
 
-	while (len >= 0)
+	while ( len >= 0 )
 	{
 		i = len - 1;
 		x = stack[len];
-		while (i >= 0)
+		while ( i >= 0 )
 		{
 			if (x == stack[i])
 				return (1);
@@ -125,9 +113,9 @@ int	check_for_char(char *ptr)
 	int	i;
 
 	i = 0;
-	while (*ptr)
+	while ( *ptr )
 	{
-		if ((*ptr < 9 || *ptr > 13) && (*ptr != 32))
+		if ( (*ptr < 9 || *ptr > 13) && (*ptr != 32) )
 			i++;
 		ptr++;
 	}

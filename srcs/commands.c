@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 14:11:31 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/11 18:04:40 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../../assets/push_swap.h"
-#include "../assets/checker.h"
+#include "../includes/sorter.h"
 
 // ****************************************************************
 // The ft_rot() function rotates all elements in an int array.	 *
@@ -19,9 +6,11 @@
 // then position 2 becomes position 1.						    *
 // Param 1 is a pointer to the int array that will be rotated. *
 // Param 2 is the length of this array.						   *
+// Param 3 is a flag. If 1, it prints "ra\n" else if 2, it 		*
+// prints "rb\n" else if 3, it prints "rr\n".					*
 // It returns a pointer to the rotated array.					 *
 // ****************************************************************
-int	*ch_rot(int *stk, int len)
+int	*ft_rot(int *stk, int len, int flag)
 {
 	int	tmp;
 	int	i;
@@ -34,6 +23,12 @@ int	*ch_rot(int *stk, int len)
 		i++;
 	}
 	stk[i] = tmp;
+	if (flag == 1)
+		write(1, "ra\n", 3);
+	else if (flag == 2)
+		write(1, "rb\n", 3);
+	else if (flag == 3)
+		write(1, "rr\n", 3);
 	return (stk);
 }
 
@@ -44,9 +39,11 @@ int	*ch_rot(int *stk, int len)
 // Param 1 is a pointer to the int array that will be 		+ * * *
 // reverse-rotated.										   +    ****
 // Param 2 is the length of Param 1's array.				  * * *
+// Param 3 is a flag. If 1, it prints "rra\n" else if 2, it		*
+// prints "rrb\n" else if 3, it prints "rrr\n".					*
 // It returns a pointer to the reverse-rotated array.			 *
 // ****************************************************************
-int	*ch_rr(int *stk, int len)
+int	*ft_rr(int *stk, int len, int flag)
 {
 	int	tmp;
 
@@ -57,6 +54,12 @@ int	*ch_rr(int *stk, int len)
 		len--;
 	}
 	stk[0] = tmp;
+	if (flag == 1)
+		write(1, "rra\n", 4);
+	else if (flag == 2)
+		write(1, "rrb\n", 4);
+	else if (flag == 3)
+		write(1, "rrr\n", 4);
 	return (stk);
 }
 
@@ -65,20 +68,26 @@ int	*ch_rr(int *stk, int len)
 // element 2 in the array passed to it as argument for	  *
 // Param 1.												 *
 // Param 1 is a pointer to an array.					 *
+// Param 2 is a flag. If 1, it prints "sa\n" else if 2,	 *
+// it prints "sb\n" else if 3, it prints "ss\n"			  *
 // It returns a pointer to the swapped array.			   *
 // **********************************************************
-int	*ch_ss(int *stk)
+int	*ft_ss(int *stk, int flag)
 {
 	int	tmp;
 
 	tmp = stk[0];
 	stk[0] = stk[1];
 	stk[1] = tmp;
+	if (flag == 1)
+		write(1, "sa\n", 3);
+	else if (flag == 2)
+		write(1, "sb\n", 3);
 	return (stk);
 }
 
-// Only used once for doing SS
-void	ch_s2(int *stk, int *stk2)
+// Only used once for printing SS
+void	ft_s2(int *stk, int *stk2)
 {
 	int	tmp;
 
@@ -88,6 +97,7 @@ void	ch_s2(int *stk, int *stk2)
 	tmp = stk2[0];
 	stk2[0] = stk2[1];
 	stk2[1] = tmp;
+	write(1, "ss\n", 3);
 }
 
 // **********************************************************************
@@ -99,13 +109,13 @@ void	ch_s2(int *stk, int *stk2)
 // guide.  																*
 // Param 4 is a flag that tells us whether the array recieved as arg  **
 // by src was stack a or stack b. So the function knows whether to		*
-// do "pa" or "pb"														*
+// print "pa" or "pb"													*
 // if flag==0, means src param received stack a (len[0]) as argument   *
 // while param dest received stack b (len[1])						  *
 // if flag==1, means src received stack b (len[1]) as argument while  *
 // dest received stack a (len[0])									   *
 // **********************************************************************
-void	ch_pp(int *src, int *dest, int *len, int flag)
+void	ft_pp(int *src, int *dest, int *len, int flag)
 {
 	int	*srclen;
 	int	*destlen;
@@ -114,11 +124,13 @@ void	ch_pp(int *src, int *dest, int *len, int flag)
 	{
 		srclen = &len[0];
 		destlen = &len[1];
+		write(1, "pb\n", 3);
 	}
 	else if (flag == 1)
 	{
 		srclen = &len[1];
 		destlen = &len[0];
+		write(1, "pa\n", 3);
 	}
 	shift_down (dest, *destlen);
 	dest[0] = src[0];

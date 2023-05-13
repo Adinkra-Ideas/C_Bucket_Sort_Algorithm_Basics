@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_utils_3.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:24:09 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/08 15:59:28 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../assets/push_swap.h"
+#include "../includes/sorter.h"
 
 // *************************************************
 // return_b() simply returns all integers stored   *
@@ -142,36 +130,3 @@ void	push_to_buckets(int *stk, int *stkb, int *stklen, int *parts_rem)
 			ft_rot(stk, stklen[0], 1);
 	}
 }
-// void	push_to_buckets(int *stk, int *stkb, int *stklen, int *parts_rem)
-// {
-// 	int parts;
-// 	int	rank;
-// 	int top_btm[2];
-
-// 	parts = parts_rem[0];
-// 	while (stklen[0] > parts_rem[1])
-// 	{
-// 		if (int_rank(stk, stklen[0], stk[0], &rank) < parts)
-// 		{
-// 			ft_pp(stk, stkb, stklen, 0);
-// 			parts -= 1;
-// 			if (parts == 0)
-// 				parts = parts_rem[0];
-// 		}
-// 		else if (begin_top(stk, stklen[0], parts, &top_btm[0])
-//			<= begin_btm(stk, stklen[0], parts, &top_btm[1]) )
-// 		{
-// 			while (begin_top(stk, stklen[0], parts, &top_btm[0]))
-// 				ft_rot(stk, stklen[0], 1);			
-// 		}
-// 		else if ( begin_btm(stk, stklen[0], parts, &top_btm[1])
-//			< begin_top(stk, stklen[0], parts, &top_btm[0]) )
-// 		{
-// 			while (top_btm[1])
-// 			{
-// 				ft_rr(stk, stklen[0], 1);
-// 				top_btm[1]--;
-// 			}	
-// 		}
-// 	}
-// }

@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 16:12:53 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/08 17:44:19 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../assets/push_swap.h"
+#include "../includes/sorter.h"
 
 // ***********************************************************
 // The new_algo(int *stk, int *stkb, int *stklen) function	*
-// sorts the stack for push_swap when the length of the 	*
+// sorts the stack for sorter when the length of the 	*
 // stack received is less than or equal to 10 elements.	   *
 // Param 1 is the stack A, Param 2 is the stack B,			*
 // Param 3 is a pointer to the array that holds the length 	*
@@ -44,7 +32,7 @@ void	new_algo(int *stk, int *stkb, int *stklen)
 
 // ***********************************************************
 // The big_algo(int *stk, int *stkb, int *stklen) function	*
-// sorts the stack for push_swap when the length of the 	*
+// sorts the stack for sorter when the length of the 	*
 // stack received is greater than 10 elements.	   		   *
 // Param 1 is the stack A, Param 2 is the stack B,			*
 // Param 3 is a pointer to the array that holds the length 	*

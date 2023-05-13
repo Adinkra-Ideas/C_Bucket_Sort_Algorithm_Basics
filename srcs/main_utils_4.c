@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main_utils_4.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 17:18:38 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/08 16:07:00 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../assets/push_swap.h"
+#include "../includes/sorter.h"
 
 // *******************************************************************
 // sort_parts_rem(int *stk, int *stkb, int *stklen) is called by 	*
@@ -101,9 +89,9 @@ int	highest_top(int *stack, int stacklen, int *count)
 int	highest_btm(int *stack, int stacklen, int *count)
 {
 	*count = 1;
-	while (stacklen > 0)
+	while ( stacklen > 0 )
 	{
-		if (greatest_ele(stack, stack[stacklen - 1], stacklen))
+		if ( greatest_ele(stack, stack[stacklen - 1], stacklen) )
 			break ;
 		stacklen--;
 		(*count)++;

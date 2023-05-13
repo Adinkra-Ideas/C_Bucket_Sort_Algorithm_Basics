@@ -1,53 +1,56 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/23 14:58:05 by euyi              #+#    #+#              #
-#    Updated: 2022/07/11 18:06:32 by euyi             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = sorter
+TNAME = tester
 
-NAME = push_swap
-BONUS = checker
+SRCS =	main.c	\
+		main_utils.c	\
+		main_utils_2.c	\
+		main_utils_3.c	\
+		main_utils_4.c	\
+		main_utils_5.c	\
+		commands.c	\
+		algo.c	\
 
-SRC = app/main.c	app/main_utils.c	app/main_utils_2.c \
-	app/main_utils_3.c	app/main_utils_4.c	app/main_utils_5.c	\
-	app/commands.c	app/algo.c	assets/ft_atoi.c
+TSRC = test/srcs/main.c	test/srcs/commands.c	test/srcs/main_utils.c	\
+	srcs/main_utils.c	srcs/main_utils_2.c \
+	srcs/main_utils_3.c	srcs/main_utils_4.c	srcs/main_utils_5.c	\
+	srcs/commands.c	srcs/algo.c
 
-BSRC = bonus/app/main.c	bonus/app/commands.c	bonus/assets/ft_calloc.c	\
-	bonus/assets/ft_memset.c	bonus/assets/ft_strncmp.c	bonus/app/main_utils.c	\
-	app/main_utils.c	app/main_utils_2.c \
-	app/main_utils_3.c	app/main_utils_4.c	app/main_utils_5.c	\
-	app/commands.c	app/algo.c	assets/ft_atoi.c
-	
+OBJDIR = build/
+SRCDIR = srcs/
+HEADER = includes/
 
-OBJ = $(subst .c,.o,$(SRC))
+OBJS := $(SRCS:.c=.o)
+SRCS_PREFIXED := $(addprefix $(SRCDIR), $(SRCS))
+OBJECTS_PREFIXED := $(addprefix $(OBJDIR), $(OBJS))
 
-BOBJ = $(subst .c,.o,$(BSRC))
+TOBJ = $(subst .c,.o,$(TSRC))
 
-CC ?= cc
+CC = cc
 
-CFLAGS = -Wall	-Werror	-Wextra
+CFLAGS = -Wall	-Werror	-Wextra -pedantic -g3 -fsanitize=address -D BUFFER_SIZE=1200
 
 all: $(NAME)
 
-$(NAME):	$(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJECTS_PREFIXED) $(OBJDIR)
+	$(CC) $(CFLAGS) $(OBJECTS_PREFIXED) -o $(NAME)
 
-bonus: $(BONUS)
+$(OBJECTS_PREFIXED): $(OBJDIR)%.o : $(SRCDIR)%.c
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -c -I$(HEADER) $< -o $@ 
 
-$(BONUS):	$(BOBJ)
-	$(CC) $(CFLAGS) -o $(BONUS)	$(BOBJ)
+checker: $(TNAME)
+
+$(TNAME): $(TOBJ)
+	$(CC) $(CFLAGS) -o $(TNAME)	$(TOBJ)
+
 
 clean:
-	/bin/rm -f $(OBJ)	$(BOBJ)
+	/bin/rm -rf $(OBJDIR) $(TOBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)	$(BONUS)
+	/bin/rm -f $(NAME)
+	/bin/rm -f $(TNAME)
 
 re: fclean all
 
-.PHONY:	all	clean	fclean	re	bonus
+.PHONY:	all	clean	fclean	re

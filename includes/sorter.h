@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: euyi <euyi@student.42wolfsburg.de>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 17:23:38 by euyi              #+#    #+#             */
-/*   Updated: 2022/07/08 16:16:07 by euyi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef PUSH_SWAP_H
-# define   PUSH_SWAP_H
+#ifndef SORTER_H
+# define   SORTER_H
 
 # include	<stdlib.h>
 # include	<unistd.h>
@@ -55,9 +43,6 @@ int		*ft_rr(int *stk, int len, int flag);
 int		*ft_ss(int *stk, int flag);
 void	ft_pp(int *src, int *dest, int *len, int flag);
 void	ft_s2(int *stk, int *stk2);
-
-// Function from libft
-int		ft_atoi(const char *nptr);
 
 // Algorithm functions
 void	new_algo(int *stk, int *stkb, int *stklen);
